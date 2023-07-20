@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap");
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #121212 !important;
+}
+
+* {
+  font-family: "Rajdhani", -apple-system, "Segoe UI", sans-serif;
+}
+
+.form-control {
+  background-color: #222222 !important;
+  border: 0 !important;
+  color: #fff !important;
+  outline: none !important;
+}
+.form-control:focus {
+  outline: none !important;
+  background-color: #171717 !important;
+  border: 0;
+  box-shadow: none !important;
+}
+.loginbutton {
+  border: 0;
+  border-radius: 5px;
+  width: 100px;
+  height: 40px;
+  font-size: large;
+  color: #1db954;
+  background-color: #222222;
+}
+.loginbutton:hover {
+  cursor: pointer;
+  background-color: #1db954;
+  color: white;
+}
+.registerbutton {
+  border: 0;
+  border-radius: 5px;
+  width: 100px;
+  height: 40px;
+  font-size: large;
+  background-color: #1db954;
+  color: #f3f3f3;
+}
+.registerbutton:hover {
+  cursor: pointer;
+  color: #1db954;
+  background-color: #222222;
+}
+.smallbuttons1 {
+  border: 0 !important;
+  border-radius: 5px !important;
+  width: 70px !important;
+  height: 30px !important;
+  font-size: large !important;
+  background-color: #de6d0a !important;
+  color: #f3f3f3 !important;
+  font-size: small !important;
+}
+.smallbuttons1:hover {
+  cursor: pointer !important;
+  color: white !important;
+  background-color: #1db954 !important;
+  transition: all 0.2s ease;
+}
+.smallbuttons2 {
+  border: 0 !important;
+  border-radius: 5px !important;
+  width: 70px !important;
+  height: 30px;
+  font-size: large !important;
+  background-color: #e42a2a !important;
+  color: #f3f3f3 !important;
+  font-size: small !important;
+}
+.smallbuttons2:hover {
+  cursor: pointer !important;
+  color: white !important;
+  background-color: #1db954 !important;
+  transition: all 0.2s ease;
+}
+button {
+  outline: none !important;
+}
