@@ -19,13 +19,15 @@ const getNoteById = asyncHandler(async (req, res) => {
 });
 
 const CreateNote = asyncHandler(async (req, res) => {
-  const { title, content, category } = req.body;
+  const { title, content, category } = req.body; //
 
   if (!title || !content || !category) {
+    // if any of the feilds are empty
     res.status(400);
     throw new Error("Please Fill all the feilds");
     return;
   } else {
+    // if all feilds are filled
     const note = new Note({ user: req.user._id, title, content, category });
 
     const createdNote = await note.save();
@@ -35,7 +37,7 @@ const CreateNote = asyncHandler(async (req, res) => {
 });
 
 const DeleteNote = asyncHandler(async (req, res) => {
-  const note = await Note.findById(req.params.id);
+  const note = await Note.findById(req.params.id); //
 
   if (note.user.toString() !== req.user._id.toString()) {
     res.status(401);
@@ -43,7 +45,7 @@ const DeleteNote = asyncHandler(async (req, res) => {
   }
 
   if (note) {
-    await note.remove();
+    await note.remove(); // remove note
     res.json({ message: "Note Removed" });
   } else {
     res.status(404);

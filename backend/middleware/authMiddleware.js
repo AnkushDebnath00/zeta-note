@@ -7,16 +7,14 @@ const protect = asyncHandler(async (req, res, next) => {
 
   if (
     req.headers.authorization &&
-    req.headers.authorization.startsWith("Bearer")
+    req.headers.authorization.startsWith("Bearer") // check if token exists and starts with Bearer
   ) {
     try {
       token = req.headers.authorization.split(" ")[1];
 
-      //decodes token id
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const decoded = jwt.verify(token, process.env.JWT_SECRET); // JWT_SECRET is the secret key
 
-      req.user = await User.findById(decoded.id).select("-password");
-
+      req.user = await User.findById(decoded.id).select("-password"); // get user data except password
       next();
     } catch (error) {
       res.status(401);

@@ -7,9 +7,9 @@ import noteRoutes from "./routes/noteRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 
-dotenv.config();
+dotenv.config(); // environment variables
 
-connectDB();
+connectDB(); // database connection
 
 const app = express(); // app backend starts
 
@@ -22,20 +22,21 @@ app.use("/api/users", userRoutes);
 const __dirname = path.resolve();
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "/frontend/build")));
+  app.use(express.static(path.join(__dirname, "/frontend/build"))); // frontend build folder
 
-  app.get("*", (req, res) =>
-    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
+  app.get(
+    "*",
+    (req, res) =>
+      res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html")) // any route that is not api route
   );
 } else {
   app.get("/", (req, res) => {
-    res.send("API is running..");
+    res.send("API is running.."); // api route
   });
 }
 
-// Error Handler
-app.use(notFound);
-app.use(errorHandler);
+app.use(notFound); // not found middleware
+app.use(errorHandler); // error handler middleware
 
 const PORT = process.env.PORT || 5000;
 

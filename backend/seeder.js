@@ -13,18 +13,18 @@ connectDB();
 
 const importData = async () => {
   try {
-    await Note.deleteMany();
-    await User.deleteMany();
+    await Note.deleteMany(); // delete all notes
+    await User.deleteMany(); // delete all users
 
     const createdUsers = await User.insertMany(users);
 
-    const adminUser = createdUsers[0]._id;
+    const adminUser = createdUsers[0]._id; // get admin user id
 
     const sampleNotes = notes.map((note) => {
-      return { ...note, user: adminUser };
+      return { ...note, user: adminUser }; // add admin user to each note
     });
 
-    await Note.insertMany(sampleNotes);
+    await Note.insertMany(sampleNotes); // insert sample notes
 
     console.log("Data Imported!".green.inverse);
     process.exit();
@@ -36,8 +36,8 @@ const importData = async () => {
 
 const destroyData = async () => {
   try {
-    await Note.deleteMany();
-    await User.deleteMany();
+    await Note.deleteMany(); // delete all notes
+    await User.deleteMany(); // delete all users
 
     console.log("Data Destroyed!".red.inverse);
     process.exit();
@@ -48,7 +48,7 @@ const destroyData = async () => {
 };
 
 if (process.argv[2] === "-d") {
-  destroyData();
+  destroyData(); // destroy data
 } else {
-  importData();
+  importData(); // import data
 }

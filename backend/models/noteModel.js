@@ -25,6 +25,6 @@ const noteSchema = mongoose.Schema(
   }
 );
 
-const Note = mongoose.model("Note", noteSchema);
+const Note = mongoose.model("Note", noteSchema); // create Note model
 
 export default Note;

@@ -12,8 +12,8 @@ import { protect } from "../middleware/authMiddleware.js";
 router.route("/").get(protect, getNotes);
 router
   .route("/:id")
-  .get(getNoteById)
-  .delete(protect, DeleteNote)
+  .get(getNoteById) // public route
+  .delete(protect, DeleteNote) // private route
   .put(protect, UpdateNote);
 router.route("/create").post(protect, CreateNote);
 

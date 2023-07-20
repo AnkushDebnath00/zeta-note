@@ -58,10 +58,12 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 
   if (user) {
+    // if user found
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;
     user.pic = req.body.pic || user.pic;
     if (req.body.password) {
+      // if password is updated
       user.password = req.body.password;
     }
 
@@ -76,6 +78,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       token: generateToken(updatedUser._id),
     });
   } else {
+    // if user not found
     res.status(404);
     throw new Error("User Not Found");
   }

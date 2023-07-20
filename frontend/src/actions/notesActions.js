@@ -14,6 +14,7 @@ import {
 } from "../constants/notesConstants";
 import axios from "axios";
 
+const URL = process.env.BASE_URL || "http://localhost:3000";
 export const listNotes = () => async (dispatch, getState) => {
   try {
     dispatch({
@@ -30,7 +31,7 @@ export const listNotes = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/notes`, config);
+    const { data } = await axios.get(`${URL}/api/notes`, config);
 
     dispatch({
       type: NOTES_LIST_SUCCESS,
@@ -48,47 +49,45 @@ export const listNotes = () => async (dispatch, getState) => {
   }
 };
 
-export const createNoteAction = (title, content, category) => async (
-  dispatch,
-  getState
-) => {
-  try {
-    dispatch({
-      type: NOTES_CREATE_REQUEST,
-    });
+export const createNoteAction =
+  (title, content, category) => async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: NOTES_CREATE_REQUEST,
+      });
 
-    const {
-      userLogin: { userInfo },
-    } = getState();
+      const {
+        userLogin: { userInfo },
+      } = getState();
 
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    };
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
 
-    const { data } = await axios.post(
-      `/api/notes/create`,
-      { title, content, category },
-      config
-    );
+      const { data } = await axios.post(
+        `${URL}/api/notes/create`,
+        { title, content, category },
+        config
+      );
 
-    dispatch({
-      type: NOTES_CREATE_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    const message =
-      error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message;
-    dispatch({
-      type: NOTES_CREATE_FAIL,
-      payload: message,
-    });
-  }
-};
+      dispatch({
+        type: NOTES_CREATE_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message;
+      dispatch({
+        type: NOTES_CREATE_FAIL,
+        payload: message,
+      });
+    }
+  };
 
 export const deleteNoteAction = (id) => async (dispatch, getState) => {
   try {
@@ -106,7 +105,7 @@ export const deleteNoteAction = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(`/api/notes/${id}`, config);
+    const { data } = await axios.delete(`${URL}/api/notes/${id}`, config);
 
     dispatch({
       type: NOTES_DELETE_SUCCESS,
@@ -124,44 +123,42 @@ export const deleteNoteAction = (id) => async (dispatch, getState) => {
   }
 };
 
-export const updateNoteAction = (id, title, content, category) => async (
-  dispatch,
-  getState
-) => {
-  try {
-    dispatch({
-      type: NOTES_UPDATE_REQUEST,
-    });
+export const updateNoteAction =
+  (id, title, content, category) => async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: NOTES_UPDATE_REQUEST,
+      });
 
-    const {
-      userLogin: { userInfo },
-    } = getState();
+      const {
+        userLogin: { userInfo },
+      } = getState();
 
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    };
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
 
-    const { data } = await axios.put(
-      `/api/notes/${id}`,
-      { title, content, category },
-      config
-    );
+      const { data } = await axios.put(
+        `${URL}/api/notes/${id}`,
+        { title, content, category },
+        config
+      );
 
-    dispatch({
-      type: NOTES_UPDATE_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    const message =
-      error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message;
-    dispatch({
-      type: NOTES_UPDATE_FAIL,
-      payload: message,
-    });
-  }
-};
+      dispatch({
+        type: NOTES_UPDATE_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message;
+      dispatch({
+        type: NOTES_UPDATE_FAIL,
+        payload: message,
+      });
+    }
+  };
