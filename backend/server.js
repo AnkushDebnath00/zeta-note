@@ -3,11 +3,14 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import colors from "colors";
 import path from "path";
-
+import { disableReactDevTools } from "@fvilers/disable-react-devtools";
 import noteRoutes from "./routes/noteRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 
+if (process.env.NODE_ENV === "production") {
+  disableReactDevTools();
+}
 dotenv.config();
 
 connectDB();
