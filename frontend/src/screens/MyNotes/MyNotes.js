@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Accordion, Badge, Button, Card } from "react-bootstrap";
-import MainScreen from "../../components/MainScreen";
 import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 

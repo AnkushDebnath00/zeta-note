@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import MainScreen from "../../components/MainScreen";
 import axios from "axios";
 import { Button, Card, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
