@@ -23,7 +23,13 @@ function Header({ setSearch }) {
   useEffect(() => {}, [userInfo]);
 
   return (
-    <Navbar collapseOnSelect expand="lg" bg="transparent" variant="dark">
+    <Navbar
+      collapseOnSelect
+      expand="lg"
+      bg="transparent"
+      variant="dark"
+      style={{ borderRadius: "0px" }}
+    >
       <Container>
         <Navbar.Brand href="/">
           <span

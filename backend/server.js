@@ -18,7 +18,7 @@ app.use(express.json()); // express json data
 app.use("/api/notes", noteRoutes);
 app.use("/api/users", userRoutes);
 
-// deployment
+// for simultaneous deployment of backend and frontend
 const __dirname = path.resolve();
 
 if (process.env.NODE_ENV === "production") {
